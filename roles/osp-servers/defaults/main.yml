@@ -1,2 +1,22 @@
 ---
 # defaults file for osp.servers
+instances:
+  - name: app1
+    group: apps
+    deploy: dev
+    secgroup: apps
+
+  - name: app2
+    group: apps
+    deploy: dev
+    secgroup: apps
+
+  - name: db
+    group: appdbs
+    deploy: dev
+    secgroup: db
+
+  - name: frontend
+    group: frontends
+    deploy: dev
+    secgroup: frontend
