@@ -23,9 +23,10 @@
 
 - name: output of result
   debug:
+    verbosity: 2
     msg:
       - "results are {{ item.changed }}"
-      - "results are {{ item._ansible_item_result }}"
+      - "Register results are {{ item._ansible_item_result }}"
       - "results are {{ item.item.instance_name }}"
       - "results are {{ item.server.vm_state }}"
   loop: "{{ instance_res.results }}"
