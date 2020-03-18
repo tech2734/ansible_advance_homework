@@ -28,7 +28,7 @@
       - "results are {{ item.ansible_item_result }}"
       - "results are {{ item.item.instance_name }}"
       - "results are {{ item.server.vm_state }}"
-    loop: "{{ instance_res.results }}"
+  loop: "{{ instance_res.results }}"
 
 
 - name: Add floating IP to Servers
