@@ -25,7 +25,7 @@
   debug:
     msg:
       - "results are {{ item.changed }}"
-      - "results are {{ item.ansible_item_result }}"
+      - "results are {{ item._ansible_item_result }}"
       - "results are {{ item.item.instance_name }}"
       - "results are {{ item.server.vm_state }}"
   loop: "{{ instance_res.results }}"
