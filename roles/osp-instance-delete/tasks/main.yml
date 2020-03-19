@@ -15,12 +15,16 @@
   loop: "{{ instances }}"
   register: instance_res
 
-- name: output of result
-  debug:
-    verbosity: 2
-    msg:
-      - "results are {{ item.changed }}"
-      - "results are {{ item.item.name }}"
-      - "results are {{ item.server.vm_state }}"
-  loop: "{{ instance_res.results }}"
 
+- name: Delete floating IP to Servers
+  os_floating_ip:
+    cloud: ospcloud
+    state: present
+    reuse: yes
+    server: "{{ item.item.name }}"
+    network: ext_network
+    wait: true
+    state: absent
+    timeout: 180
+  loop: "{{ instance_res.results }}"
+  register: float_res

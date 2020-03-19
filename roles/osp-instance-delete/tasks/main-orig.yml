@@ -1,0 +1,65 @@
+---
+
+# tasks file for osp.servers
+- name: create instances
+  os_server:
+    cloud: ospcloud
+    name: "{{ item.name }}"
+    image: rhel-guest
+    meta: "group={{ item.group }},deployment_name={{ item.deploy }}"
+    flavor: m2.small
+    security_groups: "{{ item.secgroup }}"
+    key_name: ansible_ssh
+    wait: yes
+    nics:
+    - net-name: int_network
+    userdata: |
+      #!/bin/bash
+      echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBTCYfp/LvJHpyMqZBeXoX/jHz/LB4yAeRBMYLf3V/kopcIetQQHYIkgW96LB9CmQABX9heoopsDK8tj5IZgz//dPqfYapm+S4mz8jIOFvIwmUle6iM2KdBvMGqIBKiURVoTwQZZMoWzZEqmaHFrRuNrZCDUJ8B3LmNBqp3UQtnYUuG2Vtg/q94Wqlv7nGiBJ/bT0HhPjrsFGXJs29F354rK3Xp9KeKO9RB2PYNgIJ22KFNOZ3IV67I5bd2uJQXHEuQYqAenHh/cIt1GicOVGHKr9RQOngz4093/tuVfiwhIyKZVWu4Xm3G8x6v9nyg4ifi5XSBNvXBCuXSdivv+yd" >> /home/cloud-user/.ssh/authorized_keys
+  loop: "{{ instances }}"
+  register: instance_res
+
+- name: output of result
+  debug:
+    verbosity: 2
+    msg:
+      - "results are {{ item.changed }}"
+      - "results are {{ item.item.name }}"
+      - "results are {{ item.server.vm_state }}"
+  loop: "{{ instance_res.results }}"
+
+
+- name: Add floating IP to Servers
+  os_floating_ip:
+    cloud: ospcloud
+    state: present
+    reuse: yes
+    server: "{{ item.item.name }}"
+    network: ext_network
+    wait: true
+    timeout: 180
+  loop: "{{ instance_res.results }}"
+  register: float_res
+
+- name: debug results
+  debug:
+    msg: " instance ip register is {{ float_res.results }}"
+
+- name: print value of results
+  template:
+    src: floating_ip.j2
+    dest: floating_ip.json
+
+- name: show IP
+  debug:
+    msg: "Float IP is {{ item.item }}"
+  loop: "{{ float_res.results }}"
+
+- name: Wait for server to be available
+  wait_for:
+    host: "{{ item.item.openstack.public_v4 }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  loop: "{{ float_res.results }}"
+  delegate_to: "{{ inventory_hostname }}"
