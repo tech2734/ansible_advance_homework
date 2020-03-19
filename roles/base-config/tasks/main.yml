@@ -8,6 +8,9 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
+- name: remove old repo
+  command: rm /etc/yum.repos.d/internal.repo
+
 - name: enable repos
   template:
     src: repos_template.j2
