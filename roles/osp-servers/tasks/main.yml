@@ -26,7 +26,7 @@
     verbosity: 2
     msg:
       - "results are {{ item.changed }}"
-      - "results are {{ item.item.instance_name }}"
+      - "results are {{ item.item.name }}"
       - "results are {{ item.server.vm_state }}"
   loop: "{{ instance_res.results }}"
 
