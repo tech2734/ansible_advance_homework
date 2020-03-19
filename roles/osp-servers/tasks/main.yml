@@ -49,9 +49,8 @@
 
 - name: print value of results
   template:
-    src: float.j2
+    src: floating_ip.j2
     dest: floating_ip.json
-  delegate_to: localhost
 
 - name: show IP
   debug:
