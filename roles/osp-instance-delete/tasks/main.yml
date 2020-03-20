@@ -19,7 +19,6 @@
 - name: Delete floating IP to Servers
   os_floating_ip:
     cloud: ospcloud
-    state: present
     reuse: yes
     server: "{{ item.item.name }}"
     network: ext_network
