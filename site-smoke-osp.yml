@@ -8,10 +8,13 @@
     register: openstack_info
     tags:
       - osp.smoke
-  - name: Curl website
 
-  - name: Fail if 'Ansible has done its job' is not in the page content
-    fail:
-    when: "'Ansible has done its job' not in webpage.results[0].content"
+  - name: Get website
+    uri:
+      url: http://frontend1.{{ GUID }}.example.opentlc.com/ansible
+      return_content: true
+    register: webres
+    failed_when: "'Ansible has done its job' not in webres.content"
     tags:
       - osp.smoke
+
