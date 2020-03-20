@@ -6,7 +6,7 @@
     scm_url: "{{ github_repo }}"
     scm_type: git
     state: present
-    tower_host: https://tower1.31f7.example.opentlc.com
+    tower_host: https://tower1.{{tower_GUID}}.example.opentlc.com
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
@@ -47,7 +47,7 @@
     tower_username: admin
     tower_password: r3dh4t1!
     tower_verify_ssl: no
-    ssh_key_data: /root/.ssh/mykey.pem
+    ssh_key_data: /root/.ssh/id_rsa
     username: "{{ opentlc_login }}"
 
 - name: Remove secret

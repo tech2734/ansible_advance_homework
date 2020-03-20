@@ -16,6 +16,8 @@
     userdata: |
       #!/bin/bash
       echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBTCYfp/LvJHpyMqZBeXoX/jHz/LB4yAeRBMYLf3V/kopcIetQQHYIkgW96LB9CmQABX9heoopsDK8tj5IZgz//dPqfYapm+S4mz8jIOFvIwmUle6iM2KdBvMGqIBKiURVoTwQZZMoWzZEqmaHFrRuNrZCDUJ8B3LmNBqp3UQtnYUuG2Vtg/q94Wqlv7nGiBJ/bT0HhPjrsFGXJs29F354rK3Xp9KeKO9RB2PYNgIJ22KFNOZ3IV67I5bd2uJQXHEuQYqAenHh/cIt1GicOVGHKr9RQOngz4093/tuVfiwhIyKZVWu4Xm3G8x6v9nyg4ifi5XSBNvXBCuXSdivv+yd" >> /home/cloud-user/.ssh/authorized_keys
+      curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+      cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
   loop: "{{ instances }}"
   register: instance_res
 
