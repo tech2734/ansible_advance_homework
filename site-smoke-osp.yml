@@ -1,20 +1,19 @@
-- hosts: workstation
+- name: Smoke Test 3 Tier application
+  hosts: workstation
+  become: true
   gather_facts: false
   tasks:
-  - name: OpenStack servers
-    os_server_facts:
-     cloud: ospcloud
-     server: 'frontend'
-    register: openstack_info
-    tags:
-      - osp.smoke
+   - name: Fetch Instance Info
+     os_server_info:
+      cloud: ospcloud
+      server: frontend
+     register: result
 
-  - name: Get website
-    uri:
-      url: http://frontend1.3be2.example.opentlc.com
-      return_content: true
-    register: webres
-    failed_when: "'Ansible has done its job' not in webres.content"
-    tags:
-      - osp.smoke
-
+   - name: connection test
+     uri:
+       url: http://{{ item.public_v4 }}
+       return_content: true
+     when: item.hostname == 'frontend'
+     loop: "{{ result.openstack_servers }}"
+     register: webresult
+     failed_when: "'Ansible has done its job' not in webresult.content"
