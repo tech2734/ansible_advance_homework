@@ -1,3 +1,33 @@
+[rhel-7-server-rpms]
+baseurl = https://cdn.redhat.com/content/dist/rhel/server/7/7.7/$basearch/os
+name = Red Hat Enterprise Linux 7 Server (RPMs)
+sslverify = 0
+enabled = 1
+gpgcheck = 0
+
+
+[rhel-7-server-optional-rpms]
+baseurl = https://cdn.redhat.com/content/dist/rhel/server/7/7.7/$basearch/optional/os
+name = Red Hat Enterprise Linux 7 Server - Optional (RPMs)
+sslverify = 0
+enabled = 1
+gpgcheck = 0
+
+
+[rhel-7-server-supplementary-rpms]
+baseurl = https://cdn.redhat.com/content/dist/rhel/server/7/7.7/$basearch/supplementary/os
+name = Red Hat Enterprise Linux 7 Server - Supplementary (RPMs)
+sslverify = 0
+enabled = 1
+gpgcheck = 0
+
+[rhel-7-server-extras-rpms]
+baseurl = https://cdn.redhat.com/content/dist/rhel/server/7/7Server/$basearch/extras/os
+name = Red Hat Enterprise Linux 7 Server - Extras (RPMs)
+sslverify = 0
+enabled = 1
+gpgcheck = 0
+
 [epel]
 name=Extra Packages for Enterprise Linux 7 - $basearch
 baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
