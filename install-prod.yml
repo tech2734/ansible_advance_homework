@@ -1,0 +1,25 @@
+# attempt to install packages on prod systems
+- name: install on prod
+  hosts: workstation
+  gather_facts: true
+  vars_files:
+  - install_vars.yml
+  roles:
+  - name: osp-facts
+
+  tasks:
+  - name: register
+    subscription-manager:
+      state: present
+      username: rhn-gps-jbest
+      password: "{{ password }}"
+      pool: 8a85f99b6b498682016b521dfe463949
+
+  - name: repo enable
+    rhsm_repository:
+      name:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+      - rhel-7-server-supplementary-rpms
+      - rhel-7-server-optional-rpms
+

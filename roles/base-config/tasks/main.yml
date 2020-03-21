@@ -14,29 +14,11 @@
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
 
-#- name: install base tools and packages
-#  yum:
-#    name: "{{ item }}" 
-#    state: latest
-#  loop:
-#    - httpie
-#    - python-pip
-#
-- name: create directory for rpm files
-  file:
-    path: /tmp/rpms
-    state: directory
-    owner: root
-    mode: 0644
-
-- name: copy rpms
-  copy:
-    src: "{{ item }}"
-    dest: /tmp/rpms/
-  loop: "{{ files2copy }}"
-
-- name: install rpms
+- name: install base tools and packages
   yum:
-    name: /tmp/rpms/{{ item }}
-    state: present
-  loop: "{{ files2copy }}"
+    name: "{{ item }}" 
+    state: latest
+  loop:
+    - httpie
+    - python-pip
+

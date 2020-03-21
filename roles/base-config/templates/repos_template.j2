@@ -1,3 +1,29 @@
+# {{ ansible_managed }}
+# I could not find any repos that i could get to work with the prod servers. These do not
+[rhel-7-server-rpms]
+name=Red Hat Enterprise Linux 7
+baseurl=http://192.168.0.5/repos/rhel-7-server-rpms
+enabled=1
+gpgcheck=0
+
+[rhel-7-server-rh-common-rpms]
+name=Red Hat Enterprise Linux 7 Common
+baseurl=http://192.168.0.5/repos/rhel-7-server-rh-common-rpms
+enabled=1
+gpgcheck=0
+
+[rhel-7-server-extras-rpms]
+name=Red Hat Enterprise Linux 7 Extras
+baseurl=http://192.168.0.5/repos/rhel-7-server-extras-rpms
+enabled=1
+gpgcheck=0
+
+[rhel-7-server-optional-rpms]
+name=Red Hat Enterprise Linux 7 Optional
+baseurl=http://192.168.0.5/repos/rhel-7-server-optional-rpms
+enabled=1
+gpgcheck=0
+
 [epel]
 name=Extra Packages for Enterprise Linux 7 - $basearch
 baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
