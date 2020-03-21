@@ -9,6 +9,8 @@
 
 - name: setup repos
   hosts: frontends,apps,appdbs
+  vars_files:
+  - install_vars.yml
   become: true
 
   tasks:
