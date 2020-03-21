@@ -7,6 +7,10 @@
   roles:
   - name: osp-facts
 
+- name: setup repos
+  hosts: frontends,apps,appdbs
+  become: true
+
   tasks:
   - name: register
     redhat_subscription:
