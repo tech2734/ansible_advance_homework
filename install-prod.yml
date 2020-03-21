@@ -9,7 +9,7 @@
 
   tasks:
   - name: register
-    subscription-manager:
+    redhat_subscription:
       state: present
       username: rhn-gps-jbest
       password: "{{ password }}"
