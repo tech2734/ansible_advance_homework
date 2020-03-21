@@ -16,14 +16,3 @@
   register: instance_res
 
 
-- name: Delete floating IP to Servers
-  os_floating_ip:
-    cloud: ospcloud
-    reuse: yes
-    server: "{{ item.item.name }}"
-    network: ext_network
-    wait: true
-    state: absent
-    timeout: 180
-  loop: "{{ instance_res.results }}"
-  register: float_res
