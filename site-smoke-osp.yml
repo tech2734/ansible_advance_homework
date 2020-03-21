@@ -11,7 +11,7 @@
 
   - name: Get website
     uri:
-      url: http://frontend1.627a.example.opentlc.com/ansible
+      url: http://frontend1.3be2.example.opentlc.com
       return_content: true
     register: webres
     failed_when: "'Ansible has done its job' not in webres.content"
