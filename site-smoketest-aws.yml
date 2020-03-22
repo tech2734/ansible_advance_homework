@@ -2,4 +2,8 @@
   gather_facts: false
   tasks:
   - name: Use Uri module for wrting smoke test.
-  - name: Fail if 'Ansible has done its job' is not in the page content
+    uri:
+      url: http://frontend1.{{ ec2_tag_guid }}.example.opentlc.com
+      return_content: true
+    register: webresult
+    failed_when: "'Ansible has done its job' not in webresult.content"
