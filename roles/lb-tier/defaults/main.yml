@@ -1,17 +1,2 @@
 ---
-# defaults file for base-config
-files2copy:
-- haproxy-1.5.18-9.el7.x86_64.rpm
-- libwebp-0.3.0-7.el7.x86_64.rpm
-- postgresql-contrib-9.2.24-2.el7_7.x86_64.rpm
-- python2-httpie-0.9.4-1.el7.noarch.rpm
-- python2-pip-8.1.2-12.el7.noarch.rpm
-- python-pillow-2.0.0-20.gitd1c6db8.el7_7.x86_64.rpm
-- python-psycopg2-2.5.1-4.el7.x86_64.rpm
-- python-pygments-1.4-10.el7.noarch.rpm
-- tomcat-7.0.76-11.el7_7.noarch.rpm
-- tomcat-el-2.2-api-7.0.76-11.el7_7.noarch.rpm
-- tomcat-jsp-2.2-api-7.0.76-11.el7_7.noarch.rpm
-- tomcat-lib-7.0.76-11.el7_7.noarch.rpm
-- tomcat-servlet-3.0-api-7.0.76-11.el7_7.noarch.rpm
-- uuid-1.6.2-26.el7.x86_64.rpm
+# defaults file for lb-tier
