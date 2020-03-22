@@ -1,2 +1,7 @@
 ---
 # tasks file for db-tier
+- name: Generic message
+  debug:
+    msg: Hi, this role was replaced with geerlingguy.postgresql.  This is only here for backward-compatibility if for some reason this role were to be run.  Thank you
+
+...
